@@ -1,7 +1,7 @@
 ## 🚀 구현 기능 목록
 ### 게임 시작
 
-# InputView.java
+#### InputView.java
 
 1. "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다. 12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)"
 - 1 이상 31 이하의 숫자 입력
@@ -14,7 +14,7 @@
 - "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." 출력
 - 재입력 받기
 
-# DiscountDetails.java
+#### DiscountDetails.java
 
 1. <할인 전 총주문 금액> 계산
 - 총주문 금액이 10,000원을 넘지 않은 경우 이벤트 적용 X
@@ -26,7 +26,7 @@
 6. 4.<총혜택 금액>에 따른 <12월 이벤트 배지> 확인
 
 
-# OutputView.java
+#### OutputView.java
 
 1. "12월 (day)일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"
 
@@ -39,7 +39,7 @@
 - DiscountDetails에서 계산한 <할인 후 예상 결제 금액> 출력 (estimatedAmount)
 - DiscountDetails에서 확인한 <12월 이벤트 배지> 출력 (eventBadge)
 
-# enum Menu
+#### enum Menu
 
 SOUP("양송이수프", 6_000, "양송이수프(6,000)"),
 TAPAS("타파스", 5_500, "타파스(5,500)"),
@@ -55,7 +55,7 @@ WINE("레드와인", 60_000, "레드와인(60,000)"),
 CHAMPAGNE("샴페인", 25_000, "샴페인(25,000)");
 
 
-# enum Badge
+#### enum Badge
 
 MISS("없음", 0),
 STAR("별", 5_000),
