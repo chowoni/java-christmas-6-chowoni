@@ -12,6 +12,9 @@ public class Controll {
 	public static void run() {
 		inputDay();
 		inputOrder();
+
+		DiscountDetails calculation = new DiscountDetails(day);
+		printResult();
 	}
 
 	public static void inputDay() {
@@ -23,5 +26,11 @@ public class Controll {
 
 		Validator.checkFormatting(order);
 		Validator.checkOrderCondition(order);
+	}
+
+	private static void printResult() {
+		OutputView.privewGuide();
+		OutputView.printOrderMenu();
+		OutputView.printDiscountResult();
 	}
 }
