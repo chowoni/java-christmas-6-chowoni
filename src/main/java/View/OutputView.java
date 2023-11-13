@@ -1,4 +1,4 @@
-package christmas;
+package View;
 
 public class OutputView {
 

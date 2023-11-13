@@ -1,11 +1,13 @@
-package christmas;
+package View;
+
+import christmas.Constants;
+import christmas.Controll;
+import christmas.Menu;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class Validator {
-	private static final String DAY_ERROR_MSG = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
-	private static final String ORDER_ERROR_MSG = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
 	private static String[] name;
 	private static String[] quantity;
 	
@@ -22,8 +24,8 @@ public class Validator {
 			if (tmp.contains(" ") == true || tmp.contains("-") == false)
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
-			System.out.println(ORDER_ERROR_MSG + "\n");
-			InputView.getMenu();
+			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
+			Controll.inputOrder();
 		}
 	}
 
@@ -50,8 +52,8 @@ public class Validator {
 			if (menu == Menu.EMPTY || name.length != Arrays.stream(name).distinct().count())
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
-			System.out.println(ORDER_ERROR_MSG + "\n");
-			InputView.getMenu();
+			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
+			Controll.inputOrder();
 		}
 		checkDrink(name);
 	}
@@ -63,8 +65,8 @@ public class Validator {
 			if (Integer.parseInt(quantity) == 0 || Pattern.matches(tmp, quantity) == false)
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
-			System.out.println(ORDER_ERROR_MSG + "\n");
-			InputView.getMenu();
+			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
+			Controll.inputOrder();
 		}
 	}
 
@@ -84,8 +86,8 @@ public class Validator {
 			if (name.length == size)
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
-			System.out.println(ORDER_ERROR_MSG + "\n");
-			InputView.getMenu();
+			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
+			Controll.inputOrder();
 		}
 	}
 }

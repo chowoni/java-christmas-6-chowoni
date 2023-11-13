@@ -1,5 +1,6 @@
-package christmas;
+package Discount;
 
 public class DiscountDetails {
-	
+
+
 }
