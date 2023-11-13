@@ -20,7 +20,6 @@ public class WeekDiscount {
 		if (remainder == 0 || remainder == 1) {
 			return true;
 		}
-
 		return false;
 	}
 
