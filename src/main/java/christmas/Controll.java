@@ -12,8 +12,7 @@ public class Controll {
 	public static void run() {
 		inputDay();
 		inputOrder();
-
-		DiscountDetails calculation = new DiscountDetails(day);
+		
 		printResult();
 	}
 

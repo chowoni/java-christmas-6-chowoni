@@ -7,7 +7,6 @@ import christmas.Constants;
 import christmas.Menu;
 
 public class DiscountDetails {
-	private static int day;
 	private static int totalAmount;
 	private static int totalBenefit = 0;
 	private static boolean giftStatus;
@@ -15,10 +14,6 @@ public class DiscountDetails {
 	private static String[] quantity = Validator.getQuantity();
 
 	private static NumberFormat numberFormat = NumberFormat.getInstance();
-
-	public DiscountDetails(int day) {
-		this.day = day;
-	}
 
 	public static String getBeforeTheDiscount() {
 		String result;
