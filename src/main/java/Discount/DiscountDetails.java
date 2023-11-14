@@ -30,6 +30,7 @@ public class DiscountDetails {
 	public static String getGiftMenu() {
 		if (totalAmount >= Constants.DISCOUNT_BASE_AMOUNT) {
 			giftStatus = true;
+			totalBenefit += Constants.CHAMPAGNE_PRICE;
 			return Constants.GET_GIFT;
 		}
 
@@ -39,8 +40,6 @@ public class DiscountDetails {
 
 	public static String getGiftEventDiscount() {
 		if (giftStatus == true) {
-			totalBenefit += Constants.CHAMPAGNE_PRICE;
-			;
 			return Constants.GIFT_EVENT_DISCOUNT;
 		}
 		return Constants.NO_DISCOUNT;

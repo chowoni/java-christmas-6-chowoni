@@ -68,6 +68,23 @@ public class Validator {
 			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
 			InputView.inputOrder();
 		}
+		countMenu();
+	}
+	
+	private static void countMenu() {
+		int count = 0;
+		
+		for (int n = 0; n < quantity.length; n++) {
+			count += Integer.parseInt(quantity[n]);
+		}
+		
+		try {
+			if (count > 20)
+				throw new IllegalArgumentException();
+		} catch (IllegalArgumentException e) {
+			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
+			InputView.inputOrder();
+		}
 	}
 
 	private static void checkDrink(String[] name) {

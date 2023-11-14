@@ -12,23 +12,23 @@ class DiscountTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     @Test
-    void 모든_타이틀_출력() {
+    void 증정_메뉴_없음_테스트() {
         assertSimpleTest(() -> {
-            run("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
-            assertThat(output()).contains(
-                "<주문 메뉴>",
-                "<할인 전 총주문 금액>",
-                "<증정 메뉴>",
-                "<혜택 내역>",
-                "<총혜택 금액>",
-                "<할인 후 예상 결제 금액>",
-                "<12월 이벤트 배지>"
-            );
+            run("1", "바비큐립-1,제로콜라-1");
+            assertThat(output()).contains("<증정 메뉴>" + LINE_SEPARATOR + "없음");
         });
     }
 
     @Test
-    void 혜택_내역_없음_출력() {
+    void 증정_메뉴_테스트() {
+        assertSimpleTest(() -> {
+            run("2", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains("<증정 메뉴>" + LINE_SEPARATOR + "샴페인 1개");
+        });
+    }
+
+    @Test
+    void 혜택_내역_없음_테스트() {
         assertSimpleTest(() -> {
             run("26", "타파스-1,제로콜라-1");
             assertThat(output()).contains("<혜택 내역>" + LINE_SEPARATOR + "없음");
@@ -36,18 +36,114 @@ class DiscountTest extends NsTest {
     }
 
     @Test
-    void 날짜_예외_테스트() {
+    void 크리스마스_디데이_테스트() {
         assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            run("6", "해산물파스타-2,레드와인-1,초코케이크-1");
+            assertThat(output()).contains("크리스마스 디데이 할인: ", "-1,500");
         });
     }
 
     @Test
-    void 주문_예외_테스트() {
+    void 평일할인_출력_테스트() {
         assertSimpleTest(() -> {
-            runException("3", "제로콜라-a");
-            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            run("14", "해산물파스타-2,초코케이크-1,아이스크림-1");
+            assertThat(output()).contains("평일 할인: ", "-4,046");
+        });
+    }
+
+    @Test
+    void 평일할인_없음_테스트() {
+        assertSimpleTest(() -> {
+            run("14", "티본스테이크-1,바비큐립-1,해산물파스타-1,레드와인-1");
+            assertThat(output()).contains("평일 할인: ", "0원");
+        });
+    }
+
+    @Test
+    void 주말할인_출력_테스트() {
+        assertSimpleTest(() -> {
+            run("15", "해산물파스타-2,초코케이크-1,아이스크림-1");
+            assertThat(output()).contains("주말 할인: ", "-4,046");
+        });
+    }
+
+    @Test
+    void 주말할인_없음_테스트() {
+        assertSimpleTest(() -> {
+            run("15", "시저샐러드-1,초코케이크-1,아이스크림-1");
+            assertThat(output()).contains("주말 할인: ", "0원");
+        });
+    }
+
+     @Test
+    void 특별할인_없음_테스트() {
+        assertSimpleTest(() -> {
+            run("18", "크리스마스파스타-1,바비큐립-1,초코케이크-1,레드와인-1");
+            assertThat(output()).contains("특별 할인: ", "0원");
+        });
+    }
+
+    @Test
+    void 특별할인_테스트() {
+        assertSimpleTest(() -> {
+            run("24", "크리스마스파스타-1,바비큐립-1,레드와인-1");
+            assertThat(output()).contains("특별 할인: ", "-1,000");
+        });
+    }
+
+    @Test
+    void 증정_이벤트_테스트() {
+        assertSimpleTest(() -> {
+            run("24", "티본스테이크-1,바비큐립-1,레드와인-2,제로콜라-1");
+            assertThat(output()).contains("증정 이벤트: ", "-25,000");
+        });
+    }
+
+    @Test
+    void 증정_이벤트_없음_테스트() {
+        assertSimpleTest(() -> {
+            run("24", "바비큐립-1,제로콜라-1");
+            assertThat(output()).contains("증정 이벤트: ", "0원");
+        });
+    }
+
+    @Test
+    void 총_혜택금액_없음_테스트() {
+        assertSimpleTest(() -> {
+            run("28", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("<총혜택 금액>" + LINE_SEPARATOR + "0원");
+        });
+    }
+
+    @Test
+    void 이벤트_배지_없음_테스트() {
+        assertSimpleTest(() -> {
+            runException("28", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "없음");
+        });
+    }
+
+    @Test
+    void 이벤트_배지_별_테스트() {
+        assertSimpleTest(() -> {
+            runException("11", "타파스-1,초코케이크-1,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "별");
+        });
+    }
+
+    @Test
+    void 이벤트_배지_트리_테스트() {
+        assertSimpleTest(() -> {
+            runException("11", "타파스-1,초코케이크-1,아이스크림-1,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "트리");
+        });
+    }
+
+    @Test
+    void 이벤트_배지_산타_테스트() {
+        assertSimpleTest(() -> {
+            runException("25", "티본스테이크-2,시저샐러드-1,초코케이크-1,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "산타");
         });
     }
 

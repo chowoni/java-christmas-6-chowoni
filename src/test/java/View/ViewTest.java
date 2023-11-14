@@ -22,7 +22,15 @@ class ViewTest extends NsTest {
     @Test
     void 주문_예외_테스트() {
         assertSimpleTest(() -> {
-            runException("1", "제로콜라-1,샴페인-1", "제로콜라-a", "해산물파스타=1", "티본스테이크-2,");
+            runException("1", "제로콜라-1,샴페인-1", "해산물파스타=1", "티본스테이크-2,", "크리스마스파스타-1 타파스-1");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_개수_테스트() {
+        assertSimpleTest(() -> {
+            runException("1", "티본스테이크-5,바비큐립-5,초코케이크-5,제로콜라-5,샴페인=-1", "해산물파스타-21");
             assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         });
     }
