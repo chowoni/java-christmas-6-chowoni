@@ -9,7 +9,7 @@ public class OutputView {
 	private static String[] quantity = Validator.getQuantity();
 
 	public static void privewGuide() {
-		System.out.println(Constants.DECEMBER + Controll.day + Constants.PREVIEW_BENEFIT_MSG);
+		System.out.println(Constants.DECEMBER + InputView.day + Constants.PREVIEW_BENEFIT_MSG);
 		System.out.println();
 	}
 

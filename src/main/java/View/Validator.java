@@ -25,7 +25,7 @@ public class Validator {
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
 			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
-			Controll.inputOrder();
+			InputView.inputOrder();
 		}
 	}
 
@@ -53,7 +53,7 @@ public class Validator {
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
 			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
-			Controll.inputOrder();
+			InputView.inputOrder();
 		}
 		checkDrink(name);
 	}
@@ -66,7 +66,7 @@ public class Validator {
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
 			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
-			Controll.inputOrder();
+			InputView.inputOrder();
 		}
 	}
 
@@ -87,7 +87,7 @@ public class Validator {
 				throw new IllegalArgumentException();
 		} catch (IllegalArgumentException e) {
 			System.out.println(Constants.ORDER_ERROR_MSG + "\n");
-			Controll.inputOrder();
+			InputView.inputOrder();
 		}
 	}
 }

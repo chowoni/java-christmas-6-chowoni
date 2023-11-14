@@ -2,9 +2,9 @@ package Discount;
 
 import java.text.NumberFormat;
 
+import View.InputView;
 import View.Validator;
 import christmas.Constants;
-import christmas.Controll;
 import christmas.Menu;
 
 public class WeekDiscount {
@@ -15,7 +15,7 @@ public class WeekDiscount {
 	private static NumberFormat numberFormat = NumberFormat.getInstance();
 
 	public static boolean setWeekDiscount() {
-		int remainder = (Controll.day - 1) % 7;
+		int remainder = (InputView.day - 1) % 7;
 
 		if (remainder == 0 || remainder == 1) {
 			return true;

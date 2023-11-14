@@ -2,8 +2,8 @@ package Discount;
 
 import java.text.NumberFormat;
 
+import View.InputView;
 import christmas.Constants;
-import christmas.Controll;
 
 public class SpecialDiscount {
 	private static int discount = 0;
@@ -24,7 +24,7 @@ public class SpecialDiscount {
 	}
 
 	private static void setSpecialDiscount() {
-		int day = Controll.day;
+		int day = InputView.day;
 		int remainder = (day - 1) % 7;
 
 		if (day == 25 || remainder == 2) {
