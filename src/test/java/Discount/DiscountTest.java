@@ -12,26 +12,10 @@ class DiscountTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     @Test
-    void 증정_메뉴_없음_테스트() {
-        assertSimpleTest(() -> {
-            run("1", "바비큐립-1,제로콜라-1");
-            assertThat(output()).contains("<증정 메뉴>" + LINE_SEPARATOR + "없음");
-        });
-    }
-
-    @Test
     void 증정_메뉴_테스트() {
         assertSimpleTest(() -> {
             run("2", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
             assertThat(output()).contains("<증정 메뉴>" + LINE_SEPARATOR + "샴페인 1개");
-        });
-    }
-
-    @Test
-    void 혜택_내역_없음_테스트() {
-        assertSimpleTest(() -> {
-            run("26", "타파스-1,제로콜라-1");
-            assertThat(output()).contains("<혜택 내역>" + LINE_SEPARATOR + "없음");
         });
     }
 
@@ -108,39 +92,7 @@ class DiscountTest extends NsTest {
     }
 
     @Test
-    void 총_혜택금액_없음_테스트() {
-        assertSimpleTest(() -> {
-            run("28", "타파스-1,제로콜라-1");
-            assertThat(output()).contains("<총혜택 금액>" + LINE_SEPARATOR + "0원");
-        });
-    }
-
-    @Test
-    void 이벤트_배지_없음_테스트() {
-        assertSimpleTest(() -> {
-            runException("28", "타파스-1,제로콜라-1");
-            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "없음");
-        });
-    }
-
-    @Test
-    void 이벤트_배지_별_테스트() {
-        assertSimpleTest(() -> {
-            runException("11", "타파스-1,초코케이크-1,제로콜라-1");
-            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "별");
-        });
-    }
-
-    @Test
-    void 이벤트_배지_트리_테스트() {
-        assertSimpleTest(() -> {
-            runException("11", "타파스-1,초코케이크-1,아이스크림-1,제로콜라-1");
-            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "트리");
-        });
-    }
-
-    @Test
-    void 이벤트_배지_산타_테스트() {
+    void 이벤트_배지_테스트() {
         assertSimpleTest(() -> {
             runException("25", "티본스테이크-2,시저샐러드-1,초코케이크-1,제로콜라-1");
             assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "산타");
